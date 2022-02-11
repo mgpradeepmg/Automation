@@ -1,0 +1,35 @@
+#tests:
+#  - id: basicUserNegativeFlow
+#    name: User login with wrong data
+#    description: This checks if login works with wrong data
+#    tags:
+#      bugId:
+#    startTaskIds:
+#      - login
+#    tasks:
+#      - id: loginNegativewithoutpassword
+#        type: httpClient
+#        request: ${{loginNegativeRequest2}}
+#        validate: ${{validateSuccess}}
+#        afterTask: |
+#          def saveResponse(context):
+#            token = context["last_output"]["body"]["access_token"]
+#            context["access_token"] = token
+#
+#      - id: loginNegativewithoutuser
+#          type: httpClient
+#          request: ${{loginNegativeRequest1}}
+#          validate: ${{validateSuccess}}
+#          afterTask: |
+#            def saveResponse(context):
+#              token = context["last_output"]["body"]["access_token"]
+#              context["access_token"] = token
+#
+#      - id: loginNegativewithuserpassword
+#          type: httpClient
+#          request: ${{loginNegativeRequest3}}
+#          validate: ${{validateSuccess}}
+#          afterTask: |
+#            def saveResponse(context):
+#              token = context["last_output"]["body"]["access_token"]
+#              context["access_token"] = token

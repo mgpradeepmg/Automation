@@ -1,0 +1,15 @@
+validateSuccess: |-
+  def validateHttpOk(context):
+    output = context["last_output"]
+    print(output)
+    assert output["statusCode"] == 200
+
+validateHttpCreated: |-
+  def validateHttpCreated(context):
+    output = context["last_output"]
+    assert output["statusCode"] == 201
+
+validateNotFound: |-
+  def validatev4Response(context):
+    output = context["last_output"]
+    assert output["statusCode"] == 404

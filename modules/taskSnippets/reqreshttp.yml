@@ -1,0 +1,23 @@
+baseUrl: 'https://reqres.in'
+userbody: '{
+    "name": "tesmon-test",
+    "job": "leader"
+}'
+
+
+register:
+  method: POST
+  baseUrl: ${{baseUrl}}
+  path: '/api/register'
+  headers:
+    'Content-Type': 'application/x-www-form-urlencoded'
+  body:
+
+
+usercreate:
+    method: POST
+    baseUrl: ${{baseUrl}}
+    path: '/api/users'
+    headers:
+      'Content-Type': 'application/x-www-form-urlencoded'
+    body: userbody

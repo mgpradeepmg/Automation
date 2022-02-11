@@ -1,0 +1,6 @@
+produceRapDeliveryMessagev1:
+  payload: |
+    {
+      received_at: 782789632
+      uuid: 78972-2jhkh2-32323jkl-3232
+    }
