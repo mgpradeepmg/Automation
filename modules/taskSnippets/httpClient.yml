@@ -1,0 +1,100 @@
+sundewBaseUrl: 'http://${{appHost}}:5000'
+newBaseUrl: 'http://www.google.com/'
+gorestUrl: 'http://gorest.co.in'
+accesstoken: '22eb76a76cbb4a776148cb225b57f8ff4462c4a5c31fad8751f78a1b89aafa31'
+
+
+register:
+  method: POST
+  baseUrl: ${{sundewBaseUrl}}
+  path: '/register'
+  headers:
+    'Content-Type': 'application/x-www-form-urlencoded'
+  body: >-
+    username=${{context.user_id}}&password=${{context.password}}
+
+loginRequest:
+    method: POST
+    baseUrl: ${{sundewBaseUrl}}
+    path: '/user'
+    headers:
+        'Content-Type': 'application/x-www-form-urlencoded'
+    body: >-
+        username=${{context.user_id}}&password=${{context.password}}
+addStore:
+    method: POST
+    baseUrl: ${{sundewBaseUrl}}
+    headers:
+        'Authorization' : 'Bearer ${{context.access_token}}'
+    path: '/store/${{context.store_id}}'
+
+addItemToStore:
+    method: POST
+    baseUrl: ${{sundewBaseUrl}}
+    headers:
+        'Authorization' : 'Bearer ${{context.access_token}}'
+    path: '/item/xyz'
+    body: |
+      store_id=${{context.store_id}}&price=2.309
+
+homepage:
+    method: GET
+    baseUrl: ${{newBaseUrl}}
+    headers:
+#        'Authorization' : 'Bearer ${{context.access_token}}'
+        'Content-Type': 'application/json'
+    path: ''
+#    body: |
+#      store_id=${{context.store_id}}&price=2.309
+
+gorestget:
+    method: GET
+    baseUrl: ${{gorestUrl}}
+    headers:
+        'Content-Type': 'application/json'
+    path: '/public-api/users/2322'
+#    body: |
+#      store_id=${{context.store_id}}&price=2.309
+
+gorestAuth:
+  method: POST
+  baseUrl: ${{gorestUrl}}
+  headers:
+    'Content-Type': 'application/json'
+    'Authorization': 'Bearer ${{accesstoken}'
+    path: '/public-api/users'
+    body: |
+      '{
+           "name": "Gtest1",
+           "gender": "Male",
+           "email": "gtest1@15ce.com",
+           "status": "Active"
+       }'
+
+
+loginNegativeRequest1:
+    method: POST
+    baseUrl: ${{sundewBaseUrl}}
+    path: '/user'
+    headers:
+        'Content-Type': 'application/x-www-form-urlencoded'
+    body: >-
+        username=${{context.user_id}}&password=${{}}
+
+loginNegativeRequest2:
+    method: POST
+    baseUrl: ${{sundewBaseUrl}}
+    path: '/user'
+    headers:
+        'Content-Type': 'application/x-www-form-urlencoded'
+    body: >-
+        username=${{}&password=${{context.password}}
+
+loginNegativeRequest3:
+    method: POST
+    baseUrl: ${{sundewBaseUrl}}
+    path: '/user'
+    headers:
+        'Content-Type': 'application/x-www-form-urlencoded'
+    body: >-
+        username=${{}&password=${{}}

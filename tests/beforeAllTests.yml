@@ -1,0 +1,14 @@
+beforeAll:
+  - id: register
+    name: Register username/password
+    description: This registers a user to the application
+    tasks:
+      - id: register
+        type: httpClient
+        beforeTask: |
+          import uuid
+          def setContext(context):
+            context["user_id"] = str(uuid.uuid4())
+            context["password"] = str(uuid.uuid4())
+        request: ${{register}}
+        validate: ${{validateHttpCreated}}

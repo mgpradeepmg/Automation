@@ -1,0 +1,5 @@
+files:
+  - './tests'
+  - './modules'
+  - './pythonlib'
+workspace: 'test1'

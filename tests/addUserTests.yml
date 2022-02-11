@@ -1,0 +1,44 @@
+tests:
+  - id: basicUserFlow
+    name: Add new user test
+    description: This checks if user is successfully added
+    tags:
+      bugId: 1680893
+    startTaskIds:
+      - login
+    tasks:
+      - id: login
+        type: httpClient
+        request: ${{loginRequest}}
+        validate: ${{validateSuccess}}
+        afterTask: |
+          def saveResponse(context):
+            token = context["last_output"]["body"]["access_token"]
+            context["access_token"] = token
+            testing = token.split("a")[-1]
+
+      - id: addNewStore
+        type: httpClient
+        dependsOn:
+          - login
+        beforeTask: |
+          import uuid
+          def setContext(context):
+            context["store_id"] = str(uuid.uuid4())
+        request: ${{addStore}}
+        afterTask: ${{validateHttpCreated}}
+
+      - id: validateDb
+        description: Validates that store info is written to db
+        type: postgres
+        dependsOn:
+          - addNewStore
+        connectionRef: frDb
+        queries:
+          - "SELECT * from stores where name = '${{context.store_id}}';"
+        afterTask: |
+          def validate(context):
+            assert len(context["last_output"]["0"]["rows"]) == 1
+
+
+#snakeyaml parser

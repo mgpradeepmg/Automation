@@ -1,0 +1,8 @@
+#@data/values
+---
+appPrivateIp: 172.31.90.243
+
+appHost: 100.24.20.89
+
+mockServerConfig:
+  url: tesmon-qa1.io/submission

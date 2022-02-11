@@ -1,0 +1,12 @@
+frDb:
+    username: postgres
+    password: magical_password
+    databaseName: db
+    host: ${{appPrivateIp}}
+    port: 5432
+    dbType: postgres
+    #host: 'postgresql+psycopg2://postgres:magical_password@localhost/db'
+
+frKafkaBroker:
+    broker: 'confluent-kafka:5000'
+    # add username/password
