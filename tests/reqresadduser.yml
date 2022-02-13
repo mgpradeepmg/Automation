@@ -1,17 +1,61 @@
-#tests:
-#  - id: UserCreateflow
-#    name: Add new user test
-#    description: This checks if user is successfully added
-#    tags:
-#      bugId: 1680893
-#    startTaskIds:
-#      - createuser
-#    tasks:
-#      - id: createuser
-#        type: httpClient
-#        request: ${{usercreate}}
-#        validate: ${{validateSuccess}}
-#        afterTask: |
-#          def saveResponse(context):
-#            created = context["last_output"]["body"]["createdAt"]
-#            print(context)
+tests:
+  - id: UserCreateflow
+    name: Add new user test
+    description: This checks if user is successfully added
+    tags:
+      bugId: 1680893
+    startTaskIds:
+      - createuser
+    tasks:
+      - id: createuser
+        type: httpClient
+        request: ${{usercreate}}
+        validate: ${{validateHttpCreated}}
+        afterTask: |
+          def saveResponse(context):
+            print(context)
+            created = context["last_output"]
+            print(created)
+            print(context["last_output"])
+#            userId = context["last_output"]["data"]["id"]
+#            print(userID)
+
+      - id: listSingleUSer
+        type: httpClient
+        request: ${{userlistsingle}}
+        validate: ${{validateSuccess}}
+#        path: context["last_output"]["id"]
+        afterTask: |
+          def saveResponse(context):
+            created = context["last_output"]
+
+  - id: UserCreateflowWronghttp
+    name: Add new user test
+    description: This checks if user is successfully added
+    tags:
+      bugId: 1680893
+    startTaskIds:
+      - createuser1
+    tasks:
+      - id: createuser1
+        type: httpClient
+        request: ${{usercreate1}}
+        validate: ${{validateHttpCreated}}
+        afterTask: |
+          def saveResponse(context):
+            print(context)
+
+  - id: UserCreateflowWrongproperty
+    name: Add new user test
+    description: This checks if user is successfully added
+    tags: Smoke
+    startTaskIds:
+      - createuser2
+    tasks:
+      - id: createuser2
+        type: httpClient
+        request: ${{usercreate2}}
+        validate: ${{validateHttpCreated}}
+        afterTask: |
+          def saveResponse(context):
+            print(context)

@@ -1,8 +1,8 @@
 baseUrl: 'https://reqres.in'
 userbody: '{
-    "name": "tesmon-test",
-    "job": "leader"
-}'
+        "name": "tesmon-testnew",
+        "job": "new2"
+        }'
 
 
 register:
@@ -20,4 +20,29 @@ usercreate:
     path: '/api/users'
     headers:
       'Content-Type': 'application/x-www-form-urlencoded'
-    body: userbody
+    body: ${{userbody}
+
+userlistsingle:
+    method: GET
+    baseUrl: ${{baseUrl}}
+    path: '/api/users'
+    headers:
+      'Content-Type': 'application/x-www-form-urlencoded'
+    body:
+
+
+usercreate1:
+    method: POST
+    baseUrl: ${{baseUrl}}
+    path: '/api/users'
+    headers:
+      'Content-Type':
+    body: ${{userbody}
+
+usercreate2:
+    method: POST
+    baseUrl: ${{baseUrl}}
+    path: '/api/users'
+    headers:
+      'Content-Type': 'application/x-www-form-urlencode'
+    body: ${{userbody}
