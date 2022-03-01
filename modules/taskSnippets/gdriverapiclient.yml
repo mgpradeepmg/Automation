@@ -1,0 +1,23 @@
+gdrivebaseurl: "https://www.googleapis.com/drive"
+gdriveauthurl: "https://accounts.google.com/o/oauth2"
+
+
+gdriveAuthToken:
+  method: POST
+  baseUrl: ${{gdriveauthurl}}
+  path: '/token'
+  headers:
+    'Content-Type': 'application/x-www-form-urlencoded'
+  body: |
+    code=4/0AX4XfWjXHsFEasf01bcWecNs-YSzjzknl8V2M6Zs3ILXOrCk2HzZYiNQH-PFtmAhcviZYQ&client_id=513915653117-9fmvgn5npec1a86mha6msmme9okf5ohl.apps.googleusercontent.com&client_secret=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&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fapp.tesmon-staging.io&to=
+
+
+gdriveGet:
+  method: POST
+  baseUrl: ${{gdrivebaseurl}}
+  path: '/v3'
+  headers:
+    'Content-Type': 'application/x-www-form-urlencoded'
+    'Authorization': 'Bearer ${{context.Authorization}}'
+
+

@@ -1,0 +1,62 @@
+tests:
+  - id: gorestUserUpdateFlow
+    name:  user update test
+    description: This checks if user is successfully updated
+    tags:
+    startTaskIds:
+      - updategorestuser
+    tasks:
+      - id: gorestcreateuser
+        type: httpClient
+        request: ${{gorestusercreate}}
+        validate: ${{validateHttpCreated}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            context["gid"] = res["body"]["id"]
+            print("\n")
+            print(context["gid"])
+
+
+      - id: getgorestuser
+        type: httpClient
+        request: ${{gorestuserlistsingle}}
+        validate: ${{validateSuccess}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            print(res.values())
+
+      - id: updategorestuser
+        type: httpClient
+        request: ${{gorestuserupdate}}
+        validate: ${{validateSuccess}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            print(res.values())
+
+      - id: getgorestuser2
+        type: httpClient
+        request: ${{gorestuserlistsingle}}
+        validate: ${{validateSuccess}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            print(res.values())
+
+      - id: gorestdeleteUser
+        type: httpClient
+        request: ${{gorestdeleteuser}}
+        validate: ${{validateHttpNoContent}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            print(res.values())
+
+

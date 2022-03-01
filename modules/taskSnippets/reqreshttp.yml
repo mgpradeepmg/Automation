@@ -1,9 +1,11 @@
-baseUrl: 'https://reqres.in'
-userbody: '{
-        "name": "tesmon-testnew",
-        "job": "new2"
-        }'
+#fbody: |-
+#    import formatterutil
+#    formatterutil.return_user_body(${{userbody}})
 
+baseUrl: 'https://reqres.in'
+userbody: '{"name": "tesmon-testnew3asdfaasdfsdf", "job": "new4asdfasdfafadfd" }'
+wrongurl: 'http//reqres.in'
+updatebody: ${{userbody}}
 
 register:
   method: POST
@@ -20,29 +22,56 @@ usercreate:
     path: '/api/users'
     headers:
       'Content-Type': 'application/x-www-form-urlencoded'
-    body: ${{userbody}
+    body: ${{userbody}}
 
 userlistsingle:
     method: GET
     baseUrl: ${{baseUrl}}
-    path: '/api/users'
+    path: '/api/users/${{context.userid}}'
     headers:
       'Content-Type': 'application/x-www-form-urlencoded'
-    body:
 
 
 usercreate1:
     method: POST
-    baseUrl: ${{baseUrl}}
-    path: '/api/users'
+    baseUrl: ${{wrongurl}}
+    path: '/api/users/asba'
     headers:
-      'Content-Type':
-    body: ${{userbody}
+      'Content-Type': ''
+    body: ${{userbody}}
 
 usercreate2:
     method: POST
-    baseUrl: ${{baseUrl}}
+    baseUrl: ${{wrongurl}}
     path: '/api/users'
     headers:
       'Content-Type': 'application/x-www-form-urlencode'
-    body: ${{userbody}
+      'Auth': ''
+    body: ${{userbody}}
+
+patchuser:
+    method: PATCH
+    baseUrl: ${{baseUrl}}
+    path: '/api/users/${{context.pid}}'
+    headers:
+      'Content-Type': 'application/x-www-form-urlencode'
+      'Auth': ''
+    body: ${{updatebody}}
+
+userupdate:
+    method: PUT
+    baseUrl: ${{baseUrl}}
+    path: '/api/users/${{context.pid}}'
+    headers:
+      'Content-Type': 'application/x-www-form-urlencode'
+      'Auth': ''
+    body: ${{updatebody}}
+
+deleteuser:
+    method: DELETE
+    baseUrl: ${{baseUrl}}
+    path: '/api/users/${{context.pid}}'
+    headers:
+      'Content-Type': 'application/x-www-form-urlencode'
+
+

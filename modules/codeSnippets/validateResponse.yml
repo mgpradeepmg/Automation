@@ -21,3 +21,10 @@ validateBadRequest: |-
     output = context["last_output"]
     print(output)
     assert output["statusCode"] == 400
+
+
+validateHttpNoContent: |-
+  def validateHttpNoContent(context):
+    output = context["last_output"]
+    print(output)
+    assert output["statusCode"] == 204

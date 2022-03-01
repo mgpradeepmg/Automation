@@ -1,37 +1,37 @@
-#tests:
-#  - id: homepageflow
-#    name: hit google.com
-#    description: check google website for 200 response
-#    tags:
-#      bugId: 1
-#    startTaskIds:
-#      - homepg
-#    tasks:
-#      - id: homepg
-#        type: httpClient
-#        request: ${{homepage}}
-#        validate: ${{validateSuccess}}
-#        afterTask: |
-#          def saveResponse(context):
-#            res = context["last_output"]
-#            context["last_output"] = res
-#            print("testing")
-#
-#
-#
-#  - id: gorestget
-#    name: fetch go rest user details
-#    description: fetching go rest user detalis for user 123
-#    tags:
-#      bugId: 0
-#    startTaskIds:
-#      - gorestget
-#    tasks:
-#      - id: gorestget
-#        type: httpClient
-#        request: ${{gorestAuth}}
-#        validate: ${{validateSuccess}}
-#        afterTask: |
-#          def validateResponse(context):
-#            res = context
-#            print("Hello res")
+tests:
+  - id: homepageflow
+    name: hit google.com
+    description: check google website for 200 response
+    tags:
+      bugId: 1
+    startTaskIds:
+      - homepg
+    tasks:
+      - id: homepg
+        type: httpClient
+        request: ${{homepage}}
+        validate: ${{validateSuccess}}
+        afterTask: |
+          def saveResponse(context):
+            res = context["last_output"]
+            context["last_output"] = res
+            print("testing")
+
+
+
+  - id: gorestget
+    name: fetch go rest user details
+    description: fetching go rest user detalis for user 123
+    tags:
+      bugId: 0
+    startTaskIds:
+      - gorestget
+    tasks:
+      - id: gorestget
+        type: httpClient
+        request: ${{gorestAuth}}
+        validate: ${{validateSuccess}}
+        afterTask: |
+          def validateResponse(context):
+            res = context
+            print("Hello res")

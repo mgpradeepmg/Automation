@@ -1,0 +1,78 @@
+tests:
+  - id: UserUpdateFlow
+    name:  user update test
+    description: This checks if user is successfully updated
+    tags:
+      alsdkfj;alskdfjads;lfj:sadfadf: asdlfjaldf
+    tasks:
+      - id: createuser
+        type: httpClient
+        request: ${{usercreate}}
+        validate: ${{validateHttpCreated}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            context["pid"] = res["body"]["id"]
+            print("\n")
+            print(context["pid"])
+
+
+      - id: patchuser
+        type: httpClient
+#        beforeTask: ${{body}}
+        request: ${{patchuser}}
+        validate: ${{validateSuccess}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            print(res.values())
+
+      - id: userupdate
+        type: httpClient
+        request: ${{userupdate}}
+        validate: ${{validateSuccess}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            print(res.values())
+
+      - id: DeleteUser
+        type: httpClient
+        request: ${{deleteuser}}
+        validate: ${{validateHttpNoContent}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            print(res.values())
+
+#  - id: UserUpdateFlow
+#    name: user update test
+#    description: This checks if user is successfully updated
+#    tags:
+#      alsdkfj;alskdfjads;lfj:sadfadf: asdlfjaldf
+#    startTaskIds:
+#      - patchuserinvalid
+#    tasks:
+#      - id: patchuserinvalid
+#        type: httpClient
+#        request: ${{patchuserinvalid}}
+#        validate: ${{validateHttpCreated}}
+#        afterTask: |-
+#          def saveResponse(context):
+#            res=context["last_output"]
+#            print(res.keys())
+#            print(res.values())
+#
+#      - id: userupdateinvalid
+#        type: httpClient
+#        request: ${{userupdateinvalid}}
+#        validate: ${{validateHttpCreated}}
+#        afterTask: |-
+#          def saveResponse(context):
+#            res=context["last_output"]
+#            print(res.keys())
+#            print(res.values())

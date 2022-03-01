@@ -7,33 +7,59 @@ tests:
     startTaskIds:
       - createuser
     tasks:
+#      - id: testpradeep
+##        name: test
+#        description: test
+#        tasks:
+#          - id: t1
+#            type: httpClient
+#            request:
+#              method: POST
+#              baseUrl: https://reqres.in/api/users
+#              headers:
+#                'Content-Type': 'application/x-www-form-urlencoded'
+#              body: |-
+#                {"name": "tesmon-testnew3asdfaasdfsdf", "job": "new4asdfasdfafadfd" }
+#            validate: ${{validateHttpCreated}}
       - id: createuser
         type: httpClient
         request: ${{usercreate}}
         validate: ${{validateHttpCreated}}
-        afterTask: |
+        afterTask: |-
           def saveResponse(context):
-            print(context)
-            created = context["last_output"]
-            print(created)
-            print(context["last_output"])
-#            userId = context["last_output"]["data"]["id"]
-#            print(userID)
+            res=context["last_output"]
+            print(res.keys())
+            context["userid"] = res["body"]["id"]
+            print("\n")
+            print(context["userid"])
+#            import formatterutil
+#            context["userid"]=formatterutil.extractvalue(res, "id")+"​#$%"
+#            print(context["userid"])
+#            context["userid"]="1"
+
 
       - id: listSingleUSer
         type: httpClient
-        request: ${{userlistsingle}}
-        validate: ${{validateSuccess}}
-#        path: context["last_output"]["id"]
-        afterTask: |
+        beforeTask: |-
+          def printing(context):
+            print(context["userid"])
+        request:
+          method: GET
+          baseUrl: "https://reqres.in"
+          path: '/api/users/${{context.userid}}'
+          headers:
+            'Content-Type': 'application/x-www-form-urlencoded'
+        validate: ${{validateNotFound}}
+        afterTask: |-
           def saveResponse(context):
-            created = context["last_output"]
+            res = context["last_output"]
+
 
   - id: UserCreateflowWronghttp
     name: Add new user test
     description: This checks if user is successfully added
     tags:
-      bugId: 1680893
+      $%^&: value^&*​
     startTaskIds:
       - createuser1
     tasks:
@@ -41,16 +67,19 @@ tests:
         type: httpClient
         request: ${{usercreate1}}
         validate: ${{validateHttpCreated}}
+#        adflkjadf: asdlfkjadfl
         afterTask: |
           def saveResponse(context):
             print(context)
-
+#            context["​"]=context
+#            print(context["​"])
+#
   - id: UserCreateflowWrongproperty
-    name: Add new user test
-    description: This checks if user is successfully added
-    tags: Smoke
-    startTaskIds:
-      - createuser2
+#    name  : Add new user test
+#    description: This checks if user is successfully added
+##    tags: Smoke
+#    startTaskIds:
+#      - createuser2
     tasks:
       - id: createuser2
         type: httpClient
