@@ -4,8 +4,6 @@ tests:
     description: check google website for 200 response
     tags:
       bugId: 1
-    startTaskIds:
-      - homepg
     tasks:
       - id: homepg
         type: httpClient
@@ -24,8 +22,6 @@ tests:
     description: fetching go rest user detalis for user 123
     tags:
       bugId: 0
-    startTaskIds:
-      - gorestget
     tasks:
       - id: gorestget
         type: httpClient

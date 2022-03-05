@@ -1,0 +1,4 @@
+#import uuid
+#  email=str(uuid.uuid4())
+#
+#gorestbody: '{"name":"Tenali", "gender":"male", "email":"${{email}}@15ce.com", "status":"active"}'

@@ -7,6 +7,14 @@ userbody: '{"name": "tesmon-testnew3asdfaasdfsdf", "job": "new4asdfasdfafadfd" }
 wrongurl: 'http//reqres.in'
 updatebody: ${{userbody}}
 
+homepage:
+  method: GET
+  baseUrl: 'https://google.co.in'
+  path: ''
+  headers:
+    'Content-Type': 'application/x-www-form-urlencoded'
+
+
 register:
   method: POST
   baseUrl: ${{baseUrl}}
