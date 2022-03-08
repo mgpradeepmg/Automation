@@ -3,7 +3,13 @@ accesstoken: '22eb76a76cbb4a776148cb225b57f8ff4462c4a5c31fad8751f78a1b89aafa31'
 gorestbody: '{"name":"321testmon2ab34", "gender":"female", "email":"312testmon2ab34@testmon2b34.com", "status":"active"}'
 gorestbodyupdate: '{"name":"321testmon2ab34", "gender":"female", "email":"312testmon2ab34@testmon2b34.com", "status":"active"}'
 
-
+gorestAuth:
+  method: POST
+  baseUrl:
+  path:
+  headers:
+    'Content-Type': 'application/json'
+  body:
 
 gorestusercreate:
     method: POST

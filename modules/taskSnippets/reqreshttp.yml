@@ -7,7 +7,7 @@ userbody: '{"name": "tesmon-testnew3asdfaasdfsdf", "job": "new4asdfasdfafadfd" }
 wrongurl: 'http//reqres.in'
 updatebody: ${{userbody}}
 
-homepage:
+Googlehomepage:
   method: GET
   baseUrl: 'https://google.co.in'
   path: ''

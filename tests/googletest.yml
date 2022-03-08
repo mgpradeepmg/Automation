@@ -1,0 +1,16 @@
+
+tests:
+  - id:   "    "
+    name:  " "
+    description: " "
+    tags:
+    tasks:
+      - id: " "
+        type: httpClient
+        request: ${{Googlehomepage}}
+        validate: ${{validateSuccess}}
+        afterTask: |-
+          def saveResponse(context):
+            res=context["last_output"]
+            print(res.keys())
+            print(context)

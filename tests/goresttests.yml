@@ -1,5 +1,5 @@
 tests:
-  - id: gorestUserUpdateFlow
+  - id: gorest User Update Flow
     name:  user update test
     description: This checks if user is successfully updated
     tags:

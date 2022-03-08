@@ -1,0 +1,34 @@
+#curl --location --request GET 'https://customers.api.halodoc.com/v1/configs/apptray' \
+#--header 'Authorization: bearer 3ecdf3dc-0d42-4687-8a4c-da6567f686e7' \
+#--header 'User-Agent: HD customer app/11.120/android 9' \
+#--header 'Accept-Language: in' \
+#--header 'X-APP-TOKEN: 123520eb-f3c6-410c-ae2c-d6d07ce663a8' \
+#--header 'Connection: Keep-Alive' \
+#--header 'Accept-Encoding: gzip'
+halodocUrl: 'https://customers.api.halodoc.com'
+halodocaccesstoken: '3ecdf3dc-0d42-4687-8a4c-da6567f686e7'
+
+tests:
+  - id: halodoc
+    name: Add new user test
+    description: This checks if user is successfully added
+    tags:
+    tasks:
+      - id: gdriveauth
+        type: httpClient
+        request:
+          method: GET
+          baseUrl: ${{halodocUrl}}
+          path: '/v1/configs/apptray'
+          headers:
+            'Content-Type': 'application/json'
+            'Authorization': 'bearer ${{halodocaccesstoken}}'
+            'User-Agent': 'HD customer app/11.120/android 9'
+            'X-APP-TOKEN': '123520eb-f3c6-410c-ae2c-d6d07ce663a8'
+            'Connection': 'Keep-Alive'
+#            'Accept-Encoding': 'gzip'
+        validate: ${{validateSuccess}}
+        afterTask: |
+          def saveResponse(context):
+            print(context)
+

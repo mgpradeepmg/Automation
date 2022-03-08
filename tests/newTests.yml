@@ -13,7 +13,7 @@ tests:
           def saveResponse(context):
             res = context["last_output"]
             context["last_output"] = res
-            print("testing")
+            print(context)
 
 
 
@@ -21,7 +21,7 @@ tests:
     name: fetch go rest user details
     description: fetching go rest user detalis for user 123
     tags:
-      bugId: 0
+      testing: now
     tasks:
       - id: gorestget
         type: httpClient
@@ -30,4 +30,4 @@ tests:
         afterTask: |
           def validateResponse(context):
             res = context
-            print("Hello res")
+            print(context)
